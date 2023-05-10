@@ -11,4 +11,5 @@ data class LoginViewState(
     val showProgressBar: Boolean = false,
     val emailError: String? = null,
     val passwordError: String? = null,
+    val loginSuccess: Boolean = false,
 ) : State

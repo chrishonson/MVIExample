@@ -1,17 +1,16 @@
 package com.adammcneilly.mviexample.ui.login
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.core.widget.doOnTextChanged
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import com.adammcneilly.mviexample.MainActivity
 import com.adammcneilly.mviexample.R
 import com.adammcneilly.mviexample.databinding.FragmentLoginBinding
+import com.adammcneilly.mviexample.ui.profile.ProfileFragment
 import kotlinx.coroutines.flow.collect
 
 class LoginFragment : Fragment() {
@@ -68,5 +67,11 @@ class LoginFragment : Fragment() {
         }
 
         binding.emailInputLayout.error = viewState.emailError
+
+        if (viewState.loginSuccess) {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.container, ProfileFragment())
+                .commitNow()
+        }
     }
 }

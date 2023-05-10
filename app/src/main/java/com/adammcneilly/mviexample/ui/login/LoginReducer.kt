@@ -1,5 +1,6 @@
 package com.adammcneilly.mviexample.ui.login
 
+import android.util.Log
 import com.adammcneilly.mviexample.redux.Reducer
 
 /**
@@ -14,7 +15,7 @@ class LoginReducer : Reducer<LoginViewState, LoginAction> {
      * clear that they're returning stuff, so that context isn't lost.
      */
     override fun reduce(currentState: LoginViewState, action: LoginAction): LoginViewState {
-        return when (action) {
+        val newState = when (action) {
             is LoginAction.EmailChanged -> {
                 stateWithNewEmail(currentState, action)
             }
@@ -35,6 +36,11 @@ class LoginReducer : Reducer<LoginViewState, LoginAction> {
             }
             else -> currentState
         }
+        Log.v(
+            "LoginReducer",
+            "Processing action: $action; NEW state: $newState"
+        )
+        return newState
     }
 
     private fun stateWithInvalidEmailError(currentState: LoginViewState) =
@@ -50,6 +56,7 @@ class LoginReducer : Reducer<LoginViewState, LoginAction> {
     private fun stateAfterLoginCompleted(currentState: LoginViewState) =
         currentState.copy(
             showProgressBar = false,
+            loginSuccess = true
         )
 
     private fun stateAfterLoginFailed(currentState: LoginViewState) =
