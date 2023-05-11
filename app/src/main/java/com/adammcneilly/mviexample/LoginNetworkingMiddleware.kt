@@ -23,6 +23,8 @@ class LoginNetworkingMiddleware(
 
                 loginUser(store, currentState)
             }
+
+            else -> {}
         }
     }
 
