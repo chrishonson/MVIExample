@@ -3,7 +3,6 @@ package com.adammcneilly.mviexample.login
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.adammcneilly.mviexample.LoggingMiddleware
-import com.adammcneilly.mviexample.login.data.ProdLoginService
 import com.adammcneilly.mviexample.login.domain.LoginAction
 import com.adammcneilly.mviexample.login.domain.LoginNetworkingMiddleware
 import com.adammcneilly.mviexample.login.domain.LoginReducer
@@ -27,7 +26,7 @@ class LoginViewModel : ViewModel() {
         middlewares = listOf(
             LoggingMiddleware(),
             LoginNetworkingMiddleware(
-                loginRepository = ProdLoginService(),
+                loginRepository = com.example.data.ProdLoginService(),
             ),
         )
     )

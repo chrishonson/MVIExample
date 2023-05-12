@@ -1,11 +1,10 @@
 package com.adammcneilly.mviexample.login.domain
 
-import com.adammcneilly.mviexample.login.data.LoginRepository
 import com.adammcneilly.mviexample.redux.Middleware
 import com.adammcneilly.mviexample.redux.Store
 
 class LoginNetworkingMiddleware(
-    private val loginRepository: LoginRepository,
+    private val loginRepository: com.example.data.LoginRepository,
 ) : Middleware<LoginState, LoginAction> {
 
     override suspend fun process(
