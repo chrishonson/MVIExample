@@ -1,9 +1,10 @@
 package com.adammcneilly.mviexample
 
+import com.adammcneilly.mviexample.login.domain.LoginAction
+import com.adammcneilly.mviexample.login.domain.LoginNetworkingMiddleware
+import com.adammcneilly.mviexample.login.domain.LoginReducer
+import com.adammcneilly.mviexample.login.domain.LoginState
 import com.adammcneilly.mviexample.redux.Store
-import com.adammcneilly.mviexample.ui.login.LoginAction
-import com.adammcneilly.mviexample.ui.login.LoginReducer
-import com.adammcneilly.mviexample.ui.login.LoginViewState
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
 
@@ -20,11 +21,11 @@ class LoginNetworkingMiddlewareTest {
         val fakeLoginRepository = FakeLoginRepository()
         fakeLoginRepository.shouldMockSuccess = true
 
-        val inputState = LoginViewState(email = "")
+        val inputState = LoginState(email = "")
         val inputAction = LoginAction.SignInButtonClicked
 
         val middlewareUnderTest = LoginNetworkingMiddleware(fakeLoginRepository)
-        val actionCaptureMiddleware = ActionCaptureMiddleware<LoginViewState, LoginAction>()
+        val actionCaptureMiddleware = ActionCaptureMiddleware<LoginState, LoginAction>()
 
         val loginStore = Store(
             inputState,
@@ -52,14 +53,14 @@ class LoginNetworkingMiddlewareTest {
         val fakeLoginRepository = FakeLoginRepository()
         fakeLoginRepository.shouldMockSuccess = true
 
-        val inputState = LoginViewState(
+        val inputState = LoginState(
             email = "testy@mctestface.com",
             password = "hunter2",
         )
         val inputAction = LoginAction.SignInButtonClicked
 
         val middlewareUnderTest = LoginNetworkingMiddleware(fakeLoginRepository)
-        val actionCaptureMiddleware = ActionCaptureMiddleware<LoginViewState, LoginAction>()
+        val actionCaptureMiddleware = ActionCaptureMiddleware<LoginState, LoginAction>()
 
         val loginStore = Store(
             inputState,
@@ -83,14 +84,14 @@ class LoginNetworkingMiddlewareTest {
         val fakeLoginRepository = FakeLoginRepository()
         fakeLoginRepository.shouldMockSuccess = false
 
-        val inputState = LoginViewState(
+        val inputState = LoginState(
             email = "testy@mctestface.com",
             password = "hunter2",
         )
         val inputAction = LoginAction.SignInButtonClicked
 
         val middlewareUnderTest = LoginNetworkingMiddleware(fakeLoginRepository)
-        val actionCaptureMiddleware = ActionCaptureMiddleware<LoginViewState, LoginAction>()
+        val actionCaptureMiddleware = ActionCaptureMiddleware<LoginState, LoginAction>()
 
         val loginStore = Store(
             inputState,

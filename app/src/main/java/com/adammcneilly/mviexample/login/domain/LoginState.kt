@@ -1,11 +1,11 @@
-package com.adammcneilly.mviexample.ui.login
+package com.adammcneilly.mviexample.login.domain
 
 import com.adammcneilly.mviexample.redux.State
 
 /**
  * An implementation of [State] that describes the configuration of the login screen at a given time.
  */
-data class LoginViewState(
+data class LoginState(
     val email: String = "",
     val password: String = "",
     val showProgressBar: Boolean = false,

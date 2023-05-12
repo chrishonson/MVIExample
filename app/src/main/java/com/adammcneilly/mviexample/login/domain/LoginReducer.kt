@@ -1,20 +1,20 @@
-package com.adammcneilly.mviexample.ui.login
+package com.adammcneilly.mviexample.login.domain
 
 import android.util.Log
 import com.adammcneilly.mviexample.redux.Reducer
 
 /**
  * This reducer is responsible for handling any [LoginAction], and using that to create
- * a new [LoginViewState].
+ * a new [LoginState].
  */
-class LoginReducer : Reducer<LoginViewState, LoginAction> {
+class LoginReducer : Reducer<LoginState, LoginAction> {
 
     /**
      * Side note: Notice that all of the functions are named in a way that they signify they're
      * returning a new state, and not just processing information. This helps keep your when statements
      * clear that they're returning stuff, so that context isn't lost.
      */
-    override fun reduce(currentState: LoginViewState, action: LoginAction): LoginViewState {
+    override fun reduce(currentState: LoginState, action: LoginAction): LoginState {
         val newState = when (action) {
             is LoginAction.EmailChanged -> {
                 stateWithNewEmail(currentState, action)
@@ -43,36 +43,36 @@ class LoginReducer : Reducer<LoginViewState, LoginAction> {
         return newState
     }
 
-    private fun stateWithInvalidEmailError(currentState: LoginViewState) =
+    private fun stateWithInvalidEmailError(currentState: LoginState) =
         currentState.copy(
             emailError = "Please enter an email address.",
         )
 
-    private fun stateAfterLoginStarted(currentState: LoginViewState) =
+    private fun stateAfterLoginStarted(currentState: LoginState) =
         currentState.copy(
             showProgressBar = true,
         )
 
-    private fun stateAfterLoginCompleted(currentState: LoginViewState) =
+    private fun stateAfterLoginCompleted(currentState: LoginState) =
         currentState.copy(
             showProgressBar = false,
             loginSuccess = true
         )
 
-    private fun stateAfterLoginFailed(currentState: LoginViewState) =
+    private fun stateAfterLoginFailed(currentState: LoginState) =
         currentState.copy(
             showProgressBar = false,
         )
 
     private fun stateWithNewPassword(
-        currentState: LoginViewState,
+        currentState: LoginState,
         action: LoginAction.PasswordChanged
     ) = currentState.copy(
         password = action.newPassword,
     )
 
     private fun stateWithNewEmail(
-        currentState: LoginViewState,
+        currentState: LoginState,
         action: LoginAction.EmailChanged
     ) = currentState.copy(
         email = action.newEmail,

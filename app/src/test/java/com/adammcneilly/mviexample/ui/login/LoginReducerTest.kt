@@ -1,5 +1,8 @@
 package com.adammcneilly.mviexample.ui.login
 
+import com.adammcneilly.mviexample.login.domain.LoginAction
+import com.adammcneilly.mviexample.login.domain.LoginReducer
+import com.adammcneilly.mviexample.login.domain.LoginState
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 
@@ -13,7 +16,7 @@ class LoginReducerTest {
      */
     @Test
     fun emailChangedUpdatesEmail() {
-        val inputState = LoginViewState()
+        val inputState = LoginState()
         val inputAction = LoginAction.EmailChanged("testy@mctestface.com")
 
         val expectedState = inputState.copy(
@@ -35,7 +38,7 @@ class LoginReducerTest {
      */
     @Test
     fun loginStartedShowsProgressBar() {
-        val inputState = LoginViewState()
+        val inputState = LoginState()
         val inputAction = LoginAction.LoginStarted
 
         val reducer = LoginReducer()
@@ -50,7 +53,7 @@ class LoginReducerTest {
      */
     @Test
     fun unsupportedActionReturnsOriginalState() {
-        val inputState = LoginViewState()
+        val inputState = LoginState()
         val inputAction = LoginAction.SignInButtonClicked
 
         val reducer = LoginReducer()

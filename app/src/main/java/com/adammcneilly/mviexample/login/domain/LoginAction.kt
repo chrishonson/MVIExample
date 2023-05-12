@@ -1,4 +1,4 @@
-package com.adammcneilly.mviexample.ui.login
+package com.adammcneilly.mviexample.login.domain
 
 import com.adammcneilly.mviexample.redux.Action
 

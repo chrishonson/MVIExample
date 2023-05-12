@@ -1,4 +1,4 @@
-package com.adammcneilly.mviexample
+package com.adammcneilly.mviexample.login.data
 
 import kotlinx.coroutines.delay
 

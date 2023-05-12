@@ -1,10 +1,13 @@
-package com.adammcneilly.mviexample.ui.login
+package com.adammcneilly.mviexample.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.adammcneilly.mviexample.LoggingMiddleware
-import com.adammcneilly.mviexample.LoginNetworkingMiddleware
-import com.adammcneilly.mviexample.ProdLoginService
+import com.adammcneilly.mviexample.login.data.ProdLoginService
+import com.adammcneilly.mviexample.login.domain.LoginAction
+import com.adammcneilly.mviexample.login.domain.LoginNetworkingMiddleware
+import com.adammcneilly.mviexample.login.domain.LoginReducer
+import com.adammcneilly.mviexample.login.domain.LoginState
 import com.adammcneilly.mviexample.redux.Store
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -19,7 +22,7 @@ import kotlinx.coroutines.launch
  */
 class LoginViewModel : ViewModel() {
     private val store = Store(
-        initialState = LoginViewState(),
+        initialState = LoginState(),
         reducer = LoginReducer(),
         middlewares = listOf(
             LoggingMiddleware(),
@@ -29,7 +32,7 @@ class LoginViewModel : ViewModel() {
         )
     )
 
-    val viewState: StateFlow<LoginViewState> = store.state
+    val viewState: StateFlow<LoginState> = store.state
 
     fun emailChanged(newEmail: String) {
         val action = LoginAction.EmailChanged(newEmail)

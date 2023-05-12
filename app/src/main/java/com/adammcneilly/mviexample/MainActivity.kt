@@ -1,8 +1,8 @@
 package com.adammcneilly.mviexample
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.adammcneilly.mviexample.ui.login.LoginFragment
+import androidx.appcompat.app.AppCompatActivity
+import com.adammcneilly.mviexample.login.ui.LoginFragment
 import com.adammcneilly.mviexample.ui.profile.ProfileFragment
 
 class MainActivity : AppCompatActivity() {

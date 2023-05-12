@@ -1,4 +1,4 @@
-package com.adammcneilly.mviexample.ui.login
+package com.adammcneilly.mviexample.login.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,8 +10,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.adammcneilly.mviexample.R
 import com.adammcneilly.mviexample.databinding.FragmentLoginBinding
+import com.adammcneilly.mviexample.login.LoginViewModel
+import com.adammcneilly.mviexample.login.domain.LoginState
 import com.adammcneilly.mviexample.ui.profile.ProfileFragment
-import kotlinx.coroutines.flow.collect
 
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
@@ -59,7 +60,7 @@ class LoginFragment : Fragment() {
         }
     }
 
-    private fun processViewState(viewState: LoginViewState) {
+    private fun processViewState(viewState: LoginState) {
         binding.progressBar.visibility = if (viewState.showProgressBar) {
             View.VISIBLE
         } else {

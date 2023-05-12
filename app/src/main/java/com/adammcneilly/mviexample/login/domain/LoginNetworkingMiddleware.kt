@@ -1,18 +1,17 @@
-package com.adammcneilly.mviexample
+package com.adammcneilly.mviexample.login.domain
 
+import com.adammcneilly.mviexample.login.data.LoginRepository
 import com.adammcneilly.mviexample.redux.Middleware
 import com.adammcneilly.mviexample.redux.Store
-import com.adammcneilly.mviexample.ui.login.LoginAction
-import com.adammcneilly.mviexample.ui.login.LoginViewState
 
 class LoginNetworkingMiddleware(
     private val loginRepository: LoginRepository,
-) : Middleware<LoginViewState, LoginAction> {
+) : Middleware<LoginState, LoginAction> {
 
     override suspend fun process(
         action: LoginAction,
-        currentState: LoginViewState,
-        store: Store<LoginViewState, LoginAction>,
+        currentState: LoginState,
+        store: Store<LoginState, LoginAction>,
     ) {
         when (action) {
             is LoginAction.SignInButtonClicked -> {
@@ -29,8 +28,8 @@ class LoginNetworkingMiddleware(
     }
 
     private suspend fun loginUser(
-        store: Store<LoginViewState, LoginAction>,
-        currentState: LoginViewState
+        store: Store<LoginState, LoginAction>,
+        currentState: LoginState
     ) {
         store.dispatch(LoginAction.LoginStarted)
 
